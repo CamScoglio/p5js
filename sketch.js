@@ -45,7 +45,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1920, 1280, WEBGL);
+  createCanvas(windowWidth, windowHeight, WEBGL);
   background(0);
   
   // Add CSS rules: define @font-face and a blinking ::after pseudo-element for the editable text.
@@ -192,9 +192,9 @@ function mouseReleased() {
 // --- Editable Text Overlay Setup ---
 function setupEditableText() {
   // Calculate absolute position based on fixed text originally drawn at (-245, -540)
-  let posX = width/2 - 245;
-  let posY = height/2 - 540;
-  
+  let posX = windowWidth/2 - 245;
+  let posY = windowHeight/2 - 540;
+
   // Create an editable HTML div with default text.
   editableText = createDiv(" THE WINDOW TO<br>THE WORLD BEYOND");
   editableText.elt.contentEditable = "true";
@@ -338,4 +338,13 @@ function createColorPickerWithLabel(parentDiv, labelText, initColor, cb) {
   cp.parent(parentDiv);
   cp.style('width', '100%');
   cb(cp);
+  function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  // Update positions of UI elements and the editable text based on the new window dimensions:
+  let posX = windowWidth/2 - 245;
+  let posY = windowHeight/2 - 540;
+  editableText.style('left', posX + 'px');
+  editableText.style('top', posY + 'px');
+}
+
 }

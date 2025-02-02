@@ -214,7 +214,7 @@ function setupEditableText() {
   editableText.style('background', 'none');
   editableText.style('white-space', 'pre-wrap');
   editableText.style('line-height', '1.2em');
-  // Keep the max-height to 5 lines.
+  // Keep the max-height to 4 lines.
   editableText.style('max-height', (1.2 * 4) + 'em');
   editableText.style('overflow', 'hidden');
   editableText.elt.spellcheck = false;
@@ -224,7 +224,7 @@ function setupEditableText() {
     editableText.elt.focus();
   });
   
-  // (Optional) Limit to 5 lines if desired.
+  // (Optional) Limit to 4 lines if desired.
   editableText.elt.addEventListener('input', function() {
     let lines = this.innerText.split(/\r\n|\r|\n/);
     if (lines.length > 4) {
